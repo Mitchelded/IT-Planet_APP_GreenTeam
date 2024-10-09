@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.View.Prew_Add"
+             Title="Prew_Add" NavigatedFrom="ContentPage_NavigatedFrom">
+    <VerticalStackLayout Background="#282828">
+
+        <StackLayout>
+            <Label Text="Задача" FontSize="24" HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
+            <Entry Placeholder="Задача" TextColor="White" MinimumWidthRequest="300" x:Name="TaskTitle" FontSize="18"/>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal" Margin="10,0,0,0"  HorizontalOptions="Start">
+                    <Picker  Margin="0,0,0,0" HeightRequest="40" Title="Text Color" FontSize="18" x:Name="TextColorPicker" TextColor="White" SelectedIndexChanged="ChangeEditorTextColor" />
+
+                    <DatePicker  Margin="80,0,0,0" x:Name="TaskDate" FontSize="18"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="10,0,0,0" HorizontalOptions="Start">
+                    <Picker   HeightRequest="40" FontSize="18" Title="Title Color" x:Name="TitleColorPicker" TextColor="White" SelectedIndexChanged="ChangeTitleTextColor" />
+
+                    <Picker HeightRequest="40" Margin="80,0,0,0" Title="Font size" FontSize="18"  x:Name="FontsPicker" TextColor="White" SelectedIndexChanged="ChangeEditorFontSize" />
+                </StackLayout>
+            </StackLayout>
+            <Frame BackgroundColor="#282828" BorderColor="#47464B"  HeightRequest="500" CornerRadius="16" Margin="0,0,0,0">
+                <ScrollView  VerticalScrollBarVisibility="Always" Margin="0,-50,0,0">
+                    <Editor x:Name="taskEditor" MinimumHeightRequest="400" FontSize="18" Placeholder="Detail task description" TextColor="White" Margin="0,20,0,0" VerticalOptions="FillAndExpand"
+                              VerticalTextAlignment="Start" AutoSize="TextChanges"/>
+                </ScrollView>
+            </Frame>
+            <ImageButton Source="add.png" Scale="0.5" HorizontalOptions="Center" VerticalOptions="End" Clicked="AddTask"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

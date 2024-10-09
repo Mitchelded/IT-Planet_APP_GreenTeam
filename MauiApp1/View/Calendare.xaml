@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar" 
+             x:Class="MauiApp1.View.Calendare"
+             Title="Calendare" NavigatedTo="SetupCalendar">
+    <VerticalStackLayout>
+        <controls:Calendar 
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill"
+                           DeselectedDayTextColor="White"
+                           SelectedDateColor="#1ED760"
+                           TodayTextColor="White"
+                           SelectedDayBackgroundColor="#1ED760"
+                           TodayOutlineColor="#1ED760"
+                           ArrowsBackgroundColor="#282828"
+                           ArrowsColor="White"
+                           YearLabelColor="#1ED760"
+                           MonthLabelColor="#1ED760"
+                           EventIndicatorColor="#1ED760"
+                           x:Name="EventCalendar"
+                           SelectedTodayTextColor="White" 
+                           SelectedDayTextColor="White" TodayFillColor="Transparent" DaysTitleColor="Wheat"
+                           EventIndicatorSelectedTextColor="White" EventIndicatorTextColor="White" EventIndicatorSelectedColor="White" 
+                           EventsScrollViewVisible="True" >
+
+            <controls:Calendar.EventTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding Task}" FontSize="Medium" TextColor="{Binding TaskDecorations.TaskTitleColorAsColor}" />
+                        <Label Text="{Binding TaskText}" FontSize="Small" TextColor="{Binding TaskDecorations.TaskDescriptionColorAsColor}" />
+                    </StackLayout>
+                </DataTemplate>
+            </controls:Calendar.EventTemplate>
+        </controls:Calendar>
+
+    </VerticalStackLayout>
+</ContentPage>

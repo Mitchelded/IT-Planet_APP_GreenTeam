@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.View.SettingsPage"
+             Title="SettingsPage">
+    <VerticalStackLayout Background="#282828">
+        <StackLayout>
+            <Label Text="Wheather api key" />
+            <Entry Placeholder="Api key" x:Name="ApiKeyEntry"  TextColor="White" WidthRequest="400" />
+            <Button BackgroundColor="#47464B" Text="Change api key" WidthRequest="300" TextColor="White" Clicked="ChangeApiKey"/>
+        </StackLayout>
+        
+    </VerticalStackLayout>
+</ContentPage>

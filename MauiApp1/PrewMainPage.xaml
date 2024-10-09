@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.PrewMainPage"
+             Title="PrewMainPage"
+             Loaded="SetViewTemplate" NavigatedTo="SetViewTemplateNavigation">
+
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Background="#1E1E1E">
+                <Frame  WidthRequest="440" Margin="0,10,0,0" HeightRequest="100" BackgroundColor="#000000" CornerRadius="30" BorderColor="#000000">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="345" Margin="0,0,0,0" HeightRequest="100">
+                        <Image x:Name="weather" HeightRequest="50" WidthRequest="50" Margin="15,25,0,35" Scale="2.5"/>
+                        <StackLayout Margin="50,10,50,0">
+                            <Label Text="..." FontSize="13"  TextColor="#FFFFFF" Opacity="0.5" x:Name="weatherlbl"/>
+                            <Label FontSize="13"  TextColor="#FFFFFF" Opacity="0.5" Margin="0,0,0,0" x:Name="desclbl"/>
+                        </StackLayout>
+                        <Label Text="0" FontSize="32" Margin="-30,10,0,0" x:Name="templbl"/>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Привет!" Margin="23,10,0,0" FontSize="18"/>
+                <Frame WidthRequest="440"  HeightRequest="90" Margin="0,20,0,0" BackgroundColor="#000000" CornerRadius="30" BorderColor="#000000">
+                    <StackLayout HorizontalOptions="Center" MinimumWidthRequest="345" Margin="0,0,0,0" HeightRequest="90" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="-10,0,0,0">
+                            <Label Text="Прогресс дня" FontSize="15"/>
+                            <Label Text="0/0 выполнено" FontSize="15" x:Name="lCountTasks"/>
+                            <ProgressBar x:Name="progressBar" SemanticProperties.HeadingLevel="Level2" HorizontalOptions="Center" WidthRequest="300" ScaleY="5" Margin="0,5,0,0"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame x:Name="mainFrame"  HeightRequest="500" Margin="0,20,0,0" BackgroundColor="#000000" CornerRadius="30" BorderColor="#000000">
+                    <StackLayout Margin="0,0,0,0" HeightRequest="540" >
+                        <Label Text="Задачи" FontSize="15" TextColor="White" Margin="0,0,0,0"/>
+                        <CollectionView x:Name="listView" HeightRequest="430" Margin="0,10,0,0">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate >
+                                    <SwipeView>
+                                        <SwipeView.LeftItems>
+                                            <SwipeItems>
+                                                <SwipeItem Text="{Binding SwipeText}" BackgroundColor="{Binding SwipeColor}" CommandParameter="{Binding .}" Clicked="CompleteTask"/>
+                                            </SwipeItems>
+                                        </SwipeView.LeftItems>
+                                        <SwipeView.RightItems>
+                                            <SwipeItem Text="Delete" BackgroundColor="Red"  CommandParameter="{Binding .}" Clicked="DelTask"/>
+                                        </SwipeView.RightItems>
+                                        <VerticalStackLayout>
+                                            <HorizontalStackLayout Spacing="10">
+
+                                                <Label Text="{Binding Task}" TextColor="{Binding TaskDecorations.TaskTitleColorAsColor }" Margin="0,10,0,0" FontSize="24" HeightRequest="32" >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="GoToFullTextEditor"/>
+                                                    </Label.GestureRecognizers>
+                                                    <Label.Style>
+                                                        <Style TargetType="Label">
+                                                            <Style.Triggers>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
+                                                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Label.Style>
+                                                </Label>
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+                                    </SwipeView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </StackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <ImageButton Source="add.png" Scale="0.5" Clicked="GoToAddTaskPage" HorizontalOptions="End" VerticalOptions="End"/>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center"
+            x:Name="verticalStackLayout">
+
+            <Image
+                x:Name="image"
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Hello, World!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" >
+            </Label>
+
+            <Label
+                x:Name="label"
+                Text=""
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <CollectionView x:Name="listView" ItemsSource="{Binding TaskData}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView x:Name="swipeView">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Mark as Complete" BackgroundColor="Green"  CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItem Text="Delete" BackgroundColor="Red" CommandParameter="{Binding .}"/>
+                            </SwipeView.RightItems>
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <!--<CheckBox IsChecked="{Binding isComplete}" CheckedChanged="CheckBox_CheckedChanged" />-->
+
+                                    <Label Text="{Binding Text}" Margin="0,10,0,0" FontSize="24" HeightRequest="32" WidthRequest="350"/>
+                                    <Label Text="{Binding DateTime}" Margin="-150,0,0,0" FontSize="24" HeightRequest="32" WidthRequest="350">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}"/>
+                                            <SwipeGestureRecognizer Direction="Left,Right" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Style>
+                                            <Style TargetType="Label">
+                                                <Style.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding isComplete}" Value="True">
+                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <!--<RadioButton IsChecked="{Binding isComplete}" CheckedChanged="RadioButton_CheckedChanged"/>-->
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <DatePicker >
+
+            </DatePicker>
+            <ProgressBar
+                x:Name="progressBar"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                ScaleY="5"
+                />
+            <Button
+                x:Name="CounterBtn"
+                Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+            <Button
+            x:Name="CounterBtn2"
+            Text="Test"
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="CounterBtn_Clicked2"
+            HorizontalOptions="Center" />
+
+            <Button
+            x:Name="AddBtn"
+            Text="Click me"
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="OnAddClicked"
+            HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
